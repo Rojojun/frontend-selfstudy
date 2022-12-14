@@ -4,7 +4,7 @@ import { useState } from "react";
 function App() {
   let [postTitle, setPostTitle] = useState([
     "남자 코트 추천",
-    "ㅇㅇㅇ",
+    "우와아아아 되나?",
     "살 빼자 ㅠㅠㅠ",
   ]);
   let [likeCnt, setLikeCnt] = useState(0);
@@ -46,6 +46,15 @@ function App() {
         }}
       >
         여자코트를 원해요?
+      </button>
+      <button
+        onClick={() => {
+          let sortPostTitle = [...postTitle];
+          sortPostTitle.sort();
+          setPostTitle(sortPostTitle.sort());
+        }}
+      >
+        가나다라마바사
       </button>
     </div>
   );
