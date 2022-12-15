@@ -8,36 +8,39 @@ function App() {
     "살 빼자 ㅠㅠㅠ",
   ]);
   let [likeCnt, setLikeCnt] = useState(0);
+  let [modal, setModal] = useState(false);
 
   return (
     <div className="App">
       <div className="black-nav">
         <h4>Blog</h4>
       </div>
-      <div className="list">
-        <h4>
-          {postTitle[0]}
-          <span
-            onClick={() => {
-              setLikeCnt(likeCnt++);
-              alert("좋아요를 합니다.");
-            }}
-          >
-            {" "}
-            ❤️{" "}
-          </span>{" "}
-          {likeCnt}
-        </h4>
-        <p>2월 17일 발행</p>
-      </div>
-      <div className="list">
-        <h4>{postTitle[1]}</h4>
-        <p>2월 17일 발행</p>
-      </div>
-      <div className="list">
-        <h4>{postTitle[2]}</h4>
-        <p>2월 17일 발행</p>
-      </div>
+      {postTitle.map(function (content, i) {
+        return (
+          <div className="list" key={i}>
+            <h4
+              onClick={() => {
+                modal == true ? setModal(false) : setModal(true);
+              }}
+            >
+              {postTitle[i]}
+              <span
+                onClick={() => {
+                  setLikeCnt(likeCnt + 1);
+                  alert("add like");
+                }}
+              >
+                {" "}
+                ❤️{" "}
+              </span>{" "}
+              {likeCnt}
+            </h4>
+            <p>2월 17일 발행</p>
+          </div>
+        );
+      })}
+      {modal == true ? <Modal /> : null}
+
       <button
         onClick={() => {
           let copyPostTitle = [...postTitle];
@@ -56,6 +59,16 @@ function App() {
       >
         가나다라마바사
       </button>
+    </div>
+  );
+}
+
+function Modal() {
+  return (
+    <div className="modal">
+      <h4>제목</h4>
+      <p>날짜</p>
+      <p>상세내용</p>
     </div>
   );
 }
