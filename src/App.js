@@ -7,7 +7,7 @@ function App() {
     "우와아아아 되나?",
     "살 빼자 ㅠㅠㅠ",
   ]);
-  let [likeCnt, setLikeCnt] = useState(0);
+  let [likeCnt, setLikeCnt] = useState([0, 0, 0]);
   let [modal, setModal] = useState(false);
 
   return (
@@ -26,14 +26,16 @@ function App() {
               {postTitle[i]}
               <span
                 onClick={() => {
-                  setLikeCnt(likeCnt + 1);
+                  let copy = [...likeCnt];
+                  copy[i] = copy[i] + 1;
+                  setLikeCnt(copy);
                   alert("add like");
                 }}
               >
                 {" "}
                 ❤️{" "}
               </span>{" "}
-              {likeCnt}
+              {likeCnt[i]}
             </h4>
             <p>2월 17일 발행</p>
           </div>
