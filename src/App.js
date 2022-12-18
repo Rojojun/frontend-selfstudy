@@ -10,6 +10,8 @@ function App() {
   let [likeCnt, setLikeCnt] = useState([0, 0, 0]);
   let [modal, setModal] = useState(false);
   let [title, setTitle] = useState(0);
+  let [input, setInput] = useState("");
+  const date = new Date();
 
   return (
     <div className="App">
@@ -27,9 +29,11 @@ function App() {
             >
               {postTitle[i]}
               <span
-                onClick={() => {
+                onClick={(e) => {
                   let copy = [...likeCnt];
                   copy[i] = copy[i] + 1;
+                  // event bubbling 방지
+                  e.stopPropagation();
                   setLikeCnt(copy);
                   alert("add like");
                 }}
@@ -39,7 +43,21 @@ function App() {
               </span>{" "}
               {likeCnt[i]}
             </h4>
-            <p>2월 17일 발행</p>
+            <p>
+              {date.getFullYear()}년 {date.getMonth() + 1}월 {date.getDate()}일
+            </p>
+            <button
+              onClick={() => {
+                console.log("삭제" + i);
+                let copy = [...postTitle];
+                copy.pop(i);
+                // splice()와 pop()의 차이
+                // postTitle.pop(i);
+                setPostTitle(copy);
+              }}
+            >
+              삭제
+            </button>
           </div>
         );
       })}
@@ -69,6 +87,33 @@ function App() {
       >
         가나다라마바사
       </button>
+      <div style={{ margin: 20 }}>
+        <input
+          onChange={(e) => {
+            setInput(e.target.value);
+            console.log(input);
+          }}
+        ></input>
+        <button
+          onClick={() => {
+            let copy = [...postTitle];
+            input == ""
+              ? alert("빈 값은 들어 올 수 없습니다.")
+              : copy.push(input);
+            // unshift()
+            setPostTitle(copy);
+            console.log(input);
+            //postTitle.push(input);
+            console.log(postTitle);
+
+            let copyLike = [...likeCnt];
+            copyLike[copyLike.length] = 0;
+            setLikeCnt(copyLike);
+          }}
+        >
+          upload
+        </button>
+      </div>
     </div>
   );
 }
