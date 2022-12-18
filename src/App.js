@@ -1,6 +1,6 @@
 import logo from "./logo.svg";
 import "./App.css";
-import { useState } from "react";
+import React, { useState } from "react";
 function App() {
   let [postTitle, setPostTitle] = useState([
     "남자 코트 추천",
@@ -135,6 +135,26 @@ function Modal(props) {
       </button>
     </div>
   );
+}
+
+class Legacy extends React.Component {
+  // 자바 or C#과 같은 방식
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      name: "name",
+      age: 1,
+    };
+  }
+  render() {
+    return (
+      <div>
+        hi{this.state.name} {this.state.age}
+        <button onClick={() => this.setState({ age: 2 })}>나이</button>
+      </div>
+    );
+  }
 }
 
 export default App;
