@@ -4,6 +4,11 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
+import Col from "react-bootstrap/Col";
+import Row from "react-bootstrap/Row";
+
+// img html에 넣을 경우
+import test_img from "./img/bg.png";
 
 function App() {
   return (
@@ -18,6 +23,45 @@ function App() {
           </Nav>
         </Container>
       </Navbar>
+      <div className="main-bg"></div>
+      {/* 위랑 같은 의미
+      <div
+        className="main-test"
+        style={{ backgroundImage: "url(" + test_img + ")" }}
+      ></div> */}
+
+      <Container>
+        <Row>
+          <Col sm>
+            <img
+              src="https://codingapple1.github.io/shop/shoes1.jpg"
+              width="80%"
+            />
+            {/*
+            <img src={process.env.PUBLIC_URL + "/logo192.png"} /> 
+            public 폴더 이미지에 넣을 때 권장하는 방식
+            */}
+            <h4>상품명</h4>
+            <p>상품설명</p>
+          </Col>
+          <Col sm>
+            <img
+              src="https://codingapple1.github.io/shop/shoes1.jpg"
+              width="80%"
+            />
+            <h4>상품명</h4>
+            <p>상품설명</p>
+          </Col>
+          <Col sm>
+            <img
+              src="https://codingapple1.github.io/shop/shoes1.jpg"
+              width="80%"
+            />
+            <h4>상품명</h4>
+            <p>상품설명</p>
+          </Col>
+        </Row>
+      </Container>
     </div>
   );
 }
