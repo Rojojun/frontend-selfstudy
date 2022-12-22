@@ -6,11 +6,16 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
+import data from "./data";
 
 // img html에 넣을 경우
 import test_img from "./img/bg.png";
+import { useState } from "react";
 
 function App() {
+  // 서버에 가져온 데이터라고 가정
+  let [shoes] = useState(data);
+
   return (
     <div className="App">
       <Navbar bg="primary" variant="dark">
@@ -32,38 +37,42 @@ function App() {
 
       <Container>
         <Row>
+          <ItemBox />
           <Col sm>
             <img
               src="https://codingapple1.github.io/shop/shoes1.jpg"
               width="80%"
             />
-            {/*
-            <img src={process.env.PUBLIC_URL + "/logo192.png"} /> 
-            public 폴더 이미지에 넣을 때 권장하는 방식
-            */}
-            <h4>상품명</h4>
-            <p>상품설명</p>
+            <h4>{shoes[1].title}</h4>
+            <p>{shoes[1].content}</p>
           </Col>
           <Col sm>
             <img
               src="https://codingapple1.github.io/shop/shoes1.jpg"
               width="80%"
             />
-            <h4>상품명</h4>
-            <p>상품설명</p>
-          </Col>
-          <Col sm>
-            <img
-              src="https://codingapple1.github.io/shop/shoes1.jpg"
-              width="80%"
-            />
-            <h4>상품명</h4>
-            <p>상품설명</p>
+            <h4>{shoes[2].title}</h4>
+            <p>{shoes[2].content}</p>
           </Col>
         </Row>
       </Container>
     </div>
   );
-}
 
+  function ItemBox() {
+    return;
+    <Col sm>
+      <img src="https://codingapple1.github.io/shop/shoes1.jpg" width="80%" />
+      {/*
+        <img src={process.env.PUBLIC_URL + "/logo192.png"} /> 
+        public 폴더 이미지에 넣을 때 권장하는 방식
+        */}
+      <h4>ggg</h4>
+      <p>111</p>
+    </Col>;
+  }
+}
+// 1. 컴포넌트화
+// 2. 상품명 데이터바인딩
+// 3. 반복 부분은 map으로 진행하기
 export default App;
