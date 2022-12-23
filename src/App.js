@@ -38,38 +38,25 @@ function App() {
       <Container>
         <Row>
           <ItemBox />
-          <Col sm>
-            <img
-              src="https://codingapple1.github.io/shop/shoes1.jpg"
-              width="80%"
-            />
-            <h4>{shoes[1].title}</h4>
-            <p>{shoes[1].content}</p>
-          </Col>
-          <Col sm>
-            <img
-              src="https://codingapple1.github.io/shop/shoes1.jpg"
-              width="80%"
-            />
-            <h4>{shoes[2].title}</h4>
-            <p>{shoes[2].content}</p>
-          </Col>
+          <ItemBox />
+          <ItemBox />
         </Row>
       </Container>
     </div>
   );
 
-  function ItemBox() {
-    return;
-    <Col sm>
-      <img src="https://codingapple1.github.io/shop/shoes1.jpg" width="80%" />
-      {/*
+  function ItemBox(props) {
+    return (
+      <Col sm>
+        <img src="https://codingapple1.github.io/shop/shoes1.jpg" width="80%" />
+        {/*
         <img src={process.env.PUBLIC_URL + "/logo192.png"} /> 
         public 폴더 이미지에 넣을 때 권장하는 방식
         */}
-      <h4>ggg</h4>
-      <p>111</p>
-    </Col>;
+        <h4>{shoes[props].title}</h4>
+        <p>{shoes[props].content}</p>
+      </Col>
+    );
   }
 }
 // 1. 컴포넌트화
