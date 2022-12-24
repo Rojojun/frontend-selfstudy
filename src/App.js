@@ -1,4 +1,3 @@
-import logo from "./logo.svg";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Container from "react-bootstrap/Container";
@@ -9,7 +8,6 @@ import Row from "react-bootstrap/Row";
 import data from "./data";
 
 // img html에 넣을 경우
-import test_img from "./img/bg.png";
 import { useState } from "react";
 
 function App() {
@@ -37,9 +35,9 @@ function App() {
 
       <Container>
         <Row>
-          <ItemBox />
-          <ItemBox />
-          <ItemBox />
+          {shoes.map((a, i) => {
+            return <ItemBox shoes={shoes[i]} i={i + 1} />;
+          })}
         </Row>
       </Container>
     </div>
@@ -48,18 +46,23 @@ function App() {
   function ItemBox(props) {
     return (
       <Col sm>
-        <img src="https://codingapple1.github.io/shop/shoes1.jpg" width="80%" />
-        {/*
-        <img src={process.env.PUBLIC_URL + "/logo192.png"} /> 
-        public 폴더 이미지에 넣을 때 권장하는 방식
-        */}
-        <h4>{shoes[props].title}</h4>
-        <p>{shoes[props].content}</p>
+        <img
+          src={"https://codingapple1.github.io/shop/shoes" + props.i + ".jpg"}
+          width="80%"
+        />
+        <h4>{props.shoes.title}</h4>
+        <p>{props.shoes.content}</p>
       </Col>
     );
   }
 }
-// 1. 컴포넌트화
-// 2. 상품명 데이터바인딩
-// 3. 반복 부분은 map으로 진행하기
+
+/*
+        <img src={process.env.PUBLIC_URL + "/logo192.png"} /> 
+        public 폴더 이미지에 넣을 때 권장하는 방식
+ */
+
+// 1. 컴포넌트화 --> Done
+// 2. 상품명 데이터바인딩 --> CAN NOT
+// 3. 반복 부분은 map으로 진행하기 --> CAN NOT
 export default App;
