@@ -21,10 +21,8 @@ function App() {
         <Container>
           <Navbar.Brand href="#home">Hojun's Shop</Navbar.Brand>
           <Nav className="me-auto">
-            <Nav.Link to="/" href="#home">
-              Home
-            </Nav.Link>
-            <Nav.Link href="#features">Item</Nav.Link>
+            <Link to="/">Home</Link>
+            <Link to="/detail">Item</Link>
             <Nav.Link href="#pricing">Pricing</Nav.Link>
           </Nav>
         </Container>
@@ -32,6 +30,7 @@ function App() {
       <div className="main-bg"></div>
 
       <Link to="/">홈</Link>
+      <Link to="/deatil">홈</Link>
 
       <Routes>
         <Route
