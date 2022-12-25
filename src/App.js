@@ -6,6 +6,7 @@ import Navbar from "react-bootstrap/Navbar";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import data from "./data";
+import { Routes, Route, Link } from "react-router-dom";
 
 // img html에 넣을 경우
 import { useState } from "react";
@@ -20,26 +21,39 @@ function App() {
         <Container>
           <Navbar.Brand href="#home">Hojun's Shop</Navbar.Brand>
           <Nav className="me-auto">
-            <Nav.Link href="#home">Home</Nav.Link>
+            <Nav.Link to="/" href="#home">
+              Home
+            </Nav.Link>
             <Nav.Link href="#features">Item</Nav.Link>
             <Nav.Link href="#pricing">Pricing</Nav.Link>
           </Nav>
         </Container>
       </Navbar>
       <div className="main-bg"></div>
+
+      <Link to="/">홈</Link>
+
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <Container>
+              <Row>
+                {shoes.map((a, i) => {
+                  return <ItemBox shoes={shoes[i]} i={i + 1} />;
+                })}
+              </Row>
+            </Container>
+          }
+        />
+        <Route path="/detail" element={<div>상세페이지</div>} />
+        <Route path="/about" element={<div>ABOUT TIME</div>} />
+      </Routes>
       {/* 위랑 같은 의미
       <div
         className="main-test"
         style={{ backgroundImage: "url(" + test_img + ")" }}
       ></div> */}
-
-      <Container>
-        <Row>
-          {shoes.map((a, i) => {
-            return <ItemBox shoes={shoes[i]} i={i + 1} />;
-          })}
-        </Row>
-      </Container>
     </div>
   );
 
