@@ -8,6 +8,7 @@ import Row from "react-bootstrap/Row";
 import data from "./data";
 import { Routes, Route, Link, useNavigate, Outlet } from "react-router-dom";
 import Detail from "./routes/Detail";
+import Event from "./routes/Event";
 
 // img html에 넣을 경우
 import { useState } from "react";
@@ -63,6 +64,18 @@ function App() {
           <Route path="member" element={<div>쨘~~ 보이죠?!</div>} />
           <Route path="location" element={<div>요기는 어떨까요오오?!</div>} />
         </Route>
+        <Route path="/event" element={<Event />}>
+          <Route
+            path="one"
+            element={<div>메시와 함께 세계일주를! 가즈아 아르헨티나</div>}
+          />
+          <Route
+            path="two"
+            element={
+              <div>FC바르셀로나 전설들과 함께 하는 바르셀로나 투어!</div>
+            }
+          />
+        </Route>
       </Routes>
       {/* 위랑 같은 의미
       <div
@@ -73,11 +86,12 @@ function App() {
   );
 
   function About() {
-    <div>
-      tetetetsjfkldsflsdkfskldjjkljkllk // nested route에서 보여줄 수 있게 하는
-      창구 // nested routes에서 보여주는 곳은 Outlet
-      <Outlet></Outlet>
-    </div>;
+    return (
+      <div>
+        <h4>코디각포</h4>
+        <Outlet></Outlet>
+      </div>
+    );
   }
 
   function ItemBox(props) {
