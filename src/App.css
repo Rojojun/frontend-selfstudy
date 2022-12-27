@@ -43,3 +43,13 @@
     transform: rotate(360deg);
   }
 }
+
+.title-btn {
+  padding: 8px;
+  color: #8cbdff;
+  text-decoration: none;
+}
+
+.title-btn:hover {
+  color: #a0d1ff;
+}

@@ -6,7 +6,8 @@ import Navbar from "react-bootstrap/Navbar";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import data from "./data";
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route, Link, useNavigate, Outlet } from "react-router-dom";
+import Detail from "./routes/Detail";
 
 // img html에 넣을 경우
 import { useState } from "react";
@@ -15,23 +16,32 @@ function App() {
   // 서버에 가져온 데이터라고 가정
   let [shoes] = useState(data);
 
+  // 나는 Hook이에요! -> 페이지 이동을 도와줍니다.
+  let navigate = useNavigate();
+
   return (
     <div className="App">
       <Navbar bg="primary" variant="dark">
         <Container>
-          <Navbar.Brand href="#home">Hojun's Shop</Navbar.Brand>
+          <Navbar.Brand
+            onClick={() => {
+              navigate("/");
+            }}
+            href="#home"
+          >
+            Hojun's Shop
+          </Navbar.Brand>
           <Nav className="me-auto">
-            <Link to="/">Home</Link>
-            <Link to="/detail">Item</Link>
-            <Nav.Link href="#pricing">Pricing</Nav.Link>
+            <Link className="title-btn" to="/about">
+              Home
+            </Link>
+            <Link className="title-btn" to="/detail">
+              Item
+            </Link>
           </Nav>
         </Container>
       </Navbar>
       <div className="main-bg"></div>
-
-      <Link to="/">홈</Link>
-      <Link to="/deatil">홈</Link>
-
       <Routes>
         <Route
           path="/"
@@ -45,8 +55,14 @@ function App() {
             </Container>
           }
         />
-        <Route path="/detail" element={<div>상세페이지</div>} />
-        <Route path="/about" element={<div>ABOUT TIME</div>} />
+        <Route path="/detail" element={<Detail />} />
+        <Route path="*" element={<div>404 Error</div>} />
+        /* Nested Routes 예제 장점1. Route 작성 단순화 장점2. nested
+        route접속시엔 컴포넌트 2개가 동시에 보임*/
+        <Route path="/about" element={<About />}>
+          <Route path="member" element={<div>쨘~~ 보이죠?!</div>} />
+          <Route path="location" element={<div>요기는 어떨까요오오?!</div>} />
+        </Route>
       </Routes>
       {/* 위랑 같은 의미
       <div
@@ -55,6 +71,14 @@ function App() {
       ></div> */}
     </div>
   );
+
+  function About() {
+    <div>
+      tetetetsjfkldsflsdkfskldjjkljkllk // nested route에서 보여줄 수 있게 하는
+      창구 // nested routes에서 보여주는 곳은 Outlet
+      <Outlet></Outlet>
+    </div>;
+  }
 
   function ItemBox(props) {
     return (
