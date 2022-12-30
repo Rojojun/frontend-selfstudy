@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
 
-function Event(props) {
+function Event() {
   return (
     <div>
       <h4>오늘의 이벤트</h4>

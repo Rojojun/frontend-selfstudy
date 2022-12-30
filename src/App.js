@@ -9,6 +9,7 @@ import data from "./data";
 import { Routes, Route, Link, useNavigate, Outlet } from "react-router-dom";
 import Detail from "./routes/Detail";
 import Event from "./routes/Event";
+import StyledPrac from "./routes/StyledPrac";
 
 // img html에 넣을 경우
 import { useState } from "react";
