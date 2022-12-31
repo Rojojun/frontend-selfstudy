@@ -7,22 +7,41 @@ let Show = styled.div`
   display: none;
 `;
 
+let InputTop = styled.input`
+  margin-top: 10px;
+`;
+
 function Detail(props) {
   let [show, setShow] = useState(true);
-
-  useEffect(() => {
-    setTimeout(() => {
-      setShow(false);
-    }, 2000);
-  }, []);
-
   let { id } = useParams();
   let item = props.shoes.find((i) => i.id == id);
+  let [num, setNum] = useState(0);
+
+  useEffect(() => {
+    let timer = setTimeout(() => {
+      setShow(false);
+    }, 2000);
+    return () => {
+      clearTimeout(timer);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (isNaN(num) == true) {
+      alert("Error");
+    }
+  }, [num]);
+
   return (
     <div className="container">
       {show == true ? (
         <div className="alert alert-warning">2초 이내 구매시 할인</div>
       ) : null}
+      <InputTop
+        onChange={(e) => {
+          setNum(e.target.value);
+        }}
+      ></InputTop>
       <div className="row">
         <div className="col-md-6">
           <img src={item.pictureInfo} width="100%" />
