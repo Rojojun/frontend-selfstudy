@@ -1,10 +1,28 @@
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import styled from "styled-components";
+
+// styled 컴포넌트를 이용하는게 아닌듯...
+let Show = styled.div`
+  display: none;
+`;
 
 function Detail(props) {
+  let [show, setShow] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setShow(false);
+    }, 2000);
+  }, []);
+
   let { id } = useParams();
   let item = props.shoes.find((i) => i.id == id);
   return (
     <div className="container">
+      {show == true ? (
+        <div className="alert alert-warning">2초 이내 구매시 할인</div>
+      ) : null}
       <div className="row">
         <div className="col-md-6">
           <img src={item.pictureInfo} width="100%" />
