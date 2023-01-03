@@ -9,6 +9,7 @@ import data from "./data";
 import { Routes, Route, Link, useNavigate, Outlet } from "react-router-dom";
 import Detail from "./routes/Detail";
 import Event from "./routes/Event";
+import axios from "axios";
 
 // img html에 넣을 경우
 import { useState } from "react";
@@ -56,10 +57,11 @@ function App() {
             </Container>
           }
         />
+
         <Route path="/detail/:id" element={<Detail shoes={shoes} />} />
         <Route path="*" element={<div>404 Error</div>} />
-        /* Nested Routes 예제 장점1. Route 작성 단순화 장점2. nested
-        route접속시엔 컴포넌트 2개가 동시에 보임*/
+        {/* Nested Routes 예제 장점1. Route 작성 단순화 장점2. nested
+        route접속시엔 컴포넌트 2개가 동시에 보임*/}
         <Route path="/about" element={<About />}>
           <Route path="member" element={<div>쨘~~ 보이죠?!</div>} />
           <Route path="location" element={<div>요기는 어떨까요오오?!</div>} />
@@ -82,6 +84,20 @@ function App() {
         className="main-test"
         style={{ backgroundImage: "url(" + test_img + ")" }}
       ></div> */}
+      <button
+        onClick={() => {
+          axios
+            .get("https://codingapple1.github.io/shop/data2.json")
+            .then((result) => {
+              console.log(result);
+            })
+            .catch(() => {
+              console.log("실패");
+            });
+        }}
+      >
+        버튼
+      </button>
     </div>
   );
 
