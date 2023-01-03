@@ -16,7 +16,7 @@ import { useState } from "react";
 
 function App() {
   // 서버에 가져온 데이터라고 가정
-  let [shoes] = useState(data);
+  let [shoes, setShoes] = useState(data);
 
   // 나는 Hook이에요! -> 페이지 이동을 도와줍니다.
   let navigate = useNavigate();
@@ -89,7 +89,10 @@ function App() {
           axios
             .get("https://codingapple1.github.io/shop/data2.json")
             .then((result) => {
-              console.log(result);
+              let copyShoes = [...shoes, ...result.data];
+              setShoes(copyShoes);
+
+              console.log(result.data);
             })
             .catch(() => {
               console.log("실패");
