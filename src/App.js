@@ -20,6 +20,7 @@ function App() {
 
   // 나는 Hook이에요! -> 페이지 이동을 도와줍니다.
   let navigate = useNavigate();
+  let [clicked, setClicked] = useState(0);
 
   return (
     <div className="App">
@@ -86,11 +87,15 @@ function App() {
       ></div> */}
       <button
         onClick={() => {
+          clicked++;
+          console.log(clicked);
+          let pageNum = 1 + clicked;
           axios
-            .get("https://codingapple1.github.io/shop/data2.json")
+            .get("https://codingapple1.github.io/shop/data" + pageNum + ".json")
             .then((result) => {
               let copyShoes = [...shoes, ...result.data];
               setShoes(copyShoes);
+              console.log(setClicked);
 
               console.log(result.data);
             })
