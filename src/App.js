@@ -21,6 +21,7 @@ function App() {
   // 나는 Hook이에요! -> 페이지 이동을 도와줍니다.
   let navigate = useNavigate();
   let [clicked, setClicked] = useState(0);
+  let cnt = 0;
 
   return (
     <div className="App">
@@ -87,21 +88,28 @@ function App() {
       ></div> */}
       <button
         onClick={() => {
-          clicked++;
+          setClicked(clicked + 1);
           console.log(clicked);
-          let pageNum = 1 + clicked;
-          axios
-            .get("https://codingapple1.github.io/shop/data" + pageNum + ".json")
-            .then((result) => {
-              let copyShoes = [...shoes, ...result.data];
-              setShoes(copyShoes);
-              console.log(setClicked);
+          let pageNum = 2 + clicked;
+          if (clicked < 2) {
+            axios
+              .get(
+                "https://codingapple1.github.io/shop/data" + pageNum + ".json"
+              )
+              .then((result) => {
+                let copyShoes = [...shoes, ...result.data];
+                setShoes(copyShoes);
+                console.log(setClicked);
 
-              console.log(result.data);
-            })
-            .catch(() => {
-              console.log("실패");
-            });
+                console.log(result.data);
+              })
+              .catch(() => {
+                console.log("실패");
+              });
+          } else {
+            alert("상품이 없습니다.");
+            setClicked((clicked = 2));
+          }
         }}
       >
         버튼
