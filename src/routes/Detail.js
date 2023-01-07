@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
+import { Nav } from "react-bootstrap";
+import { tab } from "@testing-library/user-event/dist/tab";
 
 // styled 컴포넌트를 이용하는게 아닌듯...
 let Show = styled.div`
@@ -16,6 +18,7 @@ function Detail(props) {
   let { id } = useParams();
   let item = props.shoes.find((i) => i.id == id);
   let [num, setNum] = useState(0);
+  let [tab, setTab] = useState(0);
 
   useEffect(() => {
     let timer = setTimeout(() => {
@@ -53,8 +56,44 @@ function Detail(props) {
           <button className="btn btn-danger">주문하기</button>
         </div>
       </div>
+      <Nav variant="tabs" defaultActiveKey="link-0">
+        <Nav.Item>
+          <Nav.Link onClick={() => setTab(0)} eventKey="link-0">
+            Active
+          </Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link onClick={() => setTab(1)} eventKey="link-1">
+            Option 2
+          </Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link onClick={() => setTab(2)} eventKey="link-2">
+            Option 3
+          </Nav.Link>
+        </Nav.Item>
+      </Nav>
+      <TabController tab={tab} />
     </div>
   );
+}
+
+function TabController({ tab }) {
+  switch (tab) {
+    case 0:
+      return <div>Content0</div>;
+      break;
+    case 1:
+      return <div>Content1</div>;
+      break;
+    case 2:
+      return <div>Content2</div>;
+      break;
+  }
+  /*
+  Same code
+  [<div>Content0</div>, <div>Content0</div>, <div>Content0</div>][tab]
+  */
 }
 
 export default Detail;
