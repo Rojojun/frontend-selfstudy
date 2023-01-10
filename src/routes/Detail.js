@@ -81,7 +81,7 @@ function Detail(props) {
 function TabController({ tab }) {
   switch (tab) {
     case 0:
-      return <div>Content0</div>;
+      return <div>ㅇㅇㅇㅇ</div>;
       break;
     case 1:
       return <div>Content1</div>;
