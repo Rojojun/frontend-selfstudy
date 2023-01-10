@@ -19,6 +19,7 @@ function Detail(props) {
   let item = props.shoes.find((i) => i.id == id);
   let [num, setNum] = useState(0);
   let [tab, setTab] = useState(0);
+  let [fade, setFade] = useState("");
 
   useEffect(() => {
     let timer = setTimeout(() => {
@@ -35,52 +36,6 @@ function Detail(props) {
     }
   }, [num]);
 
-  return (
-    <div className="container">
-      {show == true ? (
-        <div className="alert alert-warning">2초 이내 구매시 할인</div>
-      ) : null}
-      <InputTop
-        onChange={(e) => {
-          setNum(e.target.value);
-        }}
-      ></InputTop>
-      <div className="row">
-        <div className="col-md-6">
-          <img src={item.pictureInfo} width="100%" />
-        </div>
-        <div className="col-md-6">
-          <h4 className="pt-5">{item.title}</h4>
-          <p>{item.content}</p>
-          <p>{item.price}원</p>
-          <button className="btn btn-danger">주문하기</button>
-        </div>
-      </div>
-      <Nav variant="tabs" defaultActiveKey="link-0">
-        <Nav.Item>
-          <Nav.Link onClick={() => setTab(0)} eventKey="link-0">
-            Active
-          </Nav.Link>
-        </Nav.Item>
-        <Nav.Item>
-          <Nav.Link onClick={() => setTab(1)} eventKey="link-1">
-            Option 2
-          </Nav.Link>
-        </Nav.Item>
-        <Nav.Item>
-          <Nav.Link onClick={() => setTab(2)} eventKey="link-2">
-            Option 3
-          </Nav.Link>
-        </Nav.Item>
-      </Nav>
-      <TabController tab={tab} />
-    </div>
-  );
-}
-
-function TabController({ tab }) {
-  let [fade, setFade] = useState("");
-
   useEffect(
     () => {
       setFade("end");
@@ -93,7 +48,64 @@ function TabController({ tab }) {
 
   return (
     <div className={`start ${fade}`}>
-      {[<div>Content0</div>, <div>Content0</div>, <div>Content0</div>][tab]}
+      <div className="container">
+        {show == true ? (
+          <div className="alert alert-warning">2초 이내 구매시 할인</div>
+        ) : null}
+        <InputTop
+          onChange={(e) => {
+            setNum(e.target.value);
+          }}
+        ></InputTop>
+        <div className="row">
+          <div className="col-md-6">
+            <img src={item.pictureInfo} width="100%" />
+          </div>
+          <div className="col-md-6">
+            <h4 className="pt-5">{item.title}</h4>
+            <p>{item.content}</p>
+            <p>{item.price}원</p>
+            <button className="btn btn-danger">주문하기</button>
+          </div>
+        </div>
+        <Nav variant="tabs" defaultActiveKey="link-0">
+          <Nav.Item>
+            <Nav.Link onClick={() => setTab(0)} eventKey="link-0">
+              Active
+            </Nav.Link>
+          </Nav.Item>
+          <Nav.Item>
+            <Nav.Link onClick={() => setTab(1)} eventKey="link-1">
+              Option 2
+            </Nav.Link>
+          </Nav.Item>
+          <Nav.Item>
+            <Nav.Link onClick={() => setTab(2)} eventKey="link-2">
+              Option 3
+            </Nav.Link>
+          </Nav.Item>
+        </Nav>
+        <TabController tab={tab} />
+      </div>
+    </div>
+  );
+}
+
+function TabController({ tab }) {
+  let [fade, setFade] = useState("");
+
+  useEffect(() => {
+    setTimeout(() => {
+      setFade("end");
+    }, 100);
+    return () => {
+      setFade("");
+    };
+  }, [tab]);
+
+  return (
+    <div className={`start ${fade}`}>
+      {[<div>Content0</div>, <div>Content1</div>, <div>Content2</div>][tab]}
     </div>
   );
   // switch (tab) {
