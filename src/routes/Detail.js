@@ -79,21 +79,35 @@ function Detail(props) {
 }
 
 function TabController({ tab }) {
-  switch (tab) {
-    case 0:
-      return <div>ㅇㅇㅇㅇ</div>;
-      break;
-    case 1:
-      return <div>Content1</div>;
-      break;
-    case 2:
-      return <div>Content2</div>;
-      break;
-  }
-  /*
-  Same code
-  [<div>Content0</div>, <div>Content0</div>, <div>Content0</div>][tab]
-  */
+  let [fade, setFade] = useState("");
+
+  useEffect(
+    () => {
+      setFade("end");
+      return () => {
+        setFade("");
+      };
+    },
+    { tab }
+  );
+
+  return (
+    <div className={`start ${fade}`}>
+      {[<div>Content0</div>, <div>Content0</div>, <div>Content0</div>][tab]}
+    </div>
+  );
+  // switch (tab) {
+  //   case 0:
+  //     return <div>ㅇㅇㅇㅇ</div>;
+  //     break;
+  //   case 1:
+  //     return <div>Content1</div>;
+  //     break;
+  //   case 2:
+  //     return <div>Content2</div>;
+  //     break;
+  // }
+  //Same code
 }
 
 export default Detail;
